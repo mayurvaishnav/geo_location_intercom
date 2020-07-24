@@ -42,6 +42,7 @@ class TestCustomerService(unittest.TestCase):
 
 	def test_buildOutputFile(self):
 		customers = CustomerService.getCustomers(const.CUSTOMER_FILE_PATH)
-		output = CustomerService.buildOutputFile(customers, self.totalCustomers, const.OUTPUT_FILE_PATH)
+		customerList = CustomerService.filterCustomers(customers, self.intercomLocation, self.maxDistance)
+		output = CustomerService.buildOutputFile(customerList, self.totalCustomers, const.OUTPUT_FILE_PATH)
 		self.assertTrue(output != None);
 		self.assertIsInstance(output, str)

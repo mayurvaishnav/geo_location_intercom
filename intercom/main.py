@@ -2,11 +2,11 @@ import src.constants.constant as const
 import src.models.geoLocation as geoLocation
 from src.service.customerService import CustomerService
 
-def main():
+def main(inputFile, outputFile):
     """
     Main function which call all the necessary functions.
     """
-    customers = CustomerService.getCustomers(const.CUSTOMER_FILE_PATH)
+    customers = CustomerService.getCustomers(inputFile)
 
     if customers is None:
         print("No customer found!")
@@ -14,11 +14,9 @@ def main():
 
     intercomLocation = geoLocation.GeoLocation(const.INTERCOM_OFFICE_LATITUDE, const.INTERCOM_OFFICE_LONGITUDE)
 
-    print(intercomLocation.getRadianLatitude())
-    print(intercomLocation.getRadianLongitude())
     customerList = CustomerService.filterCustomers(customers, intercomLocation, const.MAX_DISTANCE_KM)
 
-    outputFilePath = CustomerService.buildOutputFile(customerList, len(customers), const.OUTPUT_FILE_PATH)
+    outputFilePath = CustomerService.buildOutputFile(customerList, len(customers), outputFile)
 
     if outputFilePath is None:
         print("Cannot write into file")
@@ -30,4 +28,4 @@ if __name__ == '__main__':
     """
     Starting of the execution
     """
-    main()
+    main(const.CUSTOMER_FILE_PATH,  const.OUTPUT_FILE_PATH)

@@ -47,7 +47,6 @@ class CustomerService(object):
             (List): list of the filtered customer objects who are within given distance
         """
         return sorted(list(filter(lambda customer: CustomerService.calculateDistance(customer, intercomLocation, maxDistance), customers)), key=lambda key: key.getUserId())
-        # sorted(ut, key=lambda x: x.count, reverse=True)
     
     @staticmethod
     def calculateDistance(customer, intercomLocation, maxDistance):
