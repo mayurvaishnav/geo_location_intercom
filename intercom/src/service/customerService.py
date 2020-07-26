@@ -92,10 +92,12 @@ class CustomerService(object):
         """
         string = "Total Customers: " + str(totalCustomerCount)
         string += "\nCustomer within " + str(const.MAX_DISTANCE_KM) + " KM: " + str(len(customers))
-        string += "\n\n"
+        string += "\n\n[\n"
 
         for customer in customers:
-            string += str(customer.getUserId()) + "  " + str(customer.getName()) + "  \n"
+            string += '{ "user_id": ' + str(customer.getUserId()) + ' "name: " ' + str(customer.getName()) +  ' "latitude: " ' + str(customer.getLatitude()) +  ' "longitude: " ' + str(customer.getLongitude()) + ' } \n'
+
+        string += "]"
         
         try:
             return writeIntoFile(string, path)
