@@ -95,7 +95,7 @@ class CustomerService(object):
         string += "\n\n"
 
         for customer in customers:
-            string += '"user_id": ' + str(customer.getUserId()) + ', "name: " ' + str(customer.getName()) +  ', "latitude: " ' + str(customer.getLatitude()) +  ', "longitude: " ' + str(customer.getLongitude()) + '\n'
+            string += '"user_id": ' + str(customer.getUserId()) + ', "name:" ' + str(customer.getName()) +  ', "latitude:" ' + str(customer.getLatitude()) +  ', "longitude:" ' + str(customer.getLongitude()) + '\n'
 
         try:
             return writeIntoFile(string, path)
